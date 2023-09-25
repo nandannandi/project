@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>FinAssam BTC</title>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{/js/angular.min.js}"></script>
+
+	<style>
+		table.center {
+
+
+			border-collapse: collapse;
+			border: 2px solid black;
+
+		}
+
+
+		.container1 thead th {
+			position: sticky;
+			top: 0;
+			width: 20px;
+			background-color: skyblue;
+		}
+
+		.container1 {
+			overflow-y: auto;
+			overflow-x: auto;
+			height: 80vh;
+		}
+
+		table,
+		th,
+		td {
+
+			font-size: 15px;
+			border: 1px solid black;
+			padding: 7px;
+			text-align: left;
+			color: black;
+
+			white-space: nowrap;
+		}
+
+		.button {
+			background-color: #4CAF50;
+			border: none;
+			color: white;
+			padding: 10px 20px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+			border-radius: 10px;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div th:replace="~{header}"></div>
+	<br><br>
+
+
+	<!--  Row 1 -->
+
+
+	<div class="card">
+		<div class="card-body" style="margin-left: auto; margin-right: auto; ">
+			<form action="uploadFile" method="POST" enctype="multipart/form-data">
+				<div class="row">
+
+				</div>
+			</form>
+			<br>
+			<div style="margin: auto; width: 55vw" class="container1 mt-4">
+
+
+				<span style=" margin-left: auto;   font-size: 20px;  color: black;
+  margin-right: auto; "> Successfully Uploaded File List </span> &nbsp;&nbsp; <span style=" color: orange;"> (Click on
+					Reference Number for Details) </span>
+				<table class="table table-bordered center" id="customers">
+
+					<thead>
+						<tr>
+							<th> SL. No</th>
+							<th> REFERENCE NUMBER </th>
+							<th> FILE NAME </th>
+							<th> NO OF RECORDS </th>
+							<th> UPLOAD DATE </th>
+
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="invoice, row : ${Filelist}">
+
+							<td th:text="${row.count}"></td>
+							<td> <a class="text-success" th:href="@{ViewFile?refId={id}(id=${invoice.refId})}">
+									<label style="cursor: pointer; color: blue;" th:text="${invoice.refId}">
+
+									</label>
+								</a> </td>
+							<td style="color: green;" th:text="${invoice.orgFileName}"></td>
+							<td th:text="${invoice.recordCount}"></td>
+							<td th:text="${invoice.createdOn}"></td>
+
+
+
+
+						</tr>
+					</tbody>
+				</table>
+
+
+
+			</div> <br><br> <br><br>
+
+		</div>
+	</div>
+
+
+</body>
+
+
+
+</html>

@@ -1,0 +1,40 @@
+body{
+	background-color: lavender;
+}
+
+.lbl{
+	
+	font-family: 'Tahoma';
+	font-weight: bold;
+}
+
+a{
+	margin-left: 30px;
+	font-weight: bold;
+}
+
+.head-1{
+	font-family: 'Papyrus';
+}
+
+.head-2{
+	font-family: 'Tahoma';
+}
+
+.container{
+	margin: auto;
+	padding: auto;
+	margin-top: 20px;
+}
+
+.sell-price{
+	font-weight: bold;
+}
+
+.product-name{
+	color: blue;
+}
+
+.top-margin{
+	margin-top: 20px;
+}

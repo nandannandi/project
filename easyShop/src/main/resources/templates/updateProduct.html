@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>EasyShop</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="../productStyle.css">
+</head>
+
+<body>
+	<div class="container">
+		<h1 class="head-1" style="color: blueviolet;">Product Management System</h1>
+		<hr>
+		<h3 class="head-2" style="color: deepskyblue;">Update Product Information</h3>
+		<br>
+		<form action="/updateProductDtl" th:object="${product}" method="POST">
+			<div class="form-outline mb-2">
+				<input type="text" th:field="*{productName}" placeholder="Product Name" class="form-control col-4" readonly="true">
+				<label class="form-label lbl" for="form3Example1n">Product Name</label>
+			</div>
+			<div class="form-outline mb-2">
+				<input type="text" th:field="*{productDescription}" placeholder="Product Description"
+					class="form-control col-4">
+				<label class="form-label lbl" for="form3Example1n">Product Description</label>
+			</div>
+			<div class="form-outline mb-2">
+				<input type="text" th:field="*{productsellPrice}" placeholder="Sell Price" class="form-control col-4">
+				<label class="form-label lbl" for="form3Example1n">Sell Price</label>
+			</div>
+			<div class="form-outline mb-2">
+				<input type="text" th:field="*{productcostPrice}" placeholder="Cost Price" class="form-control col-4">
+				<label class="form-label lbl" for="form3Example1n">Cost Price</label>
+			</div>
+			<div class="form-outline mb-2">
+				<input type="text" th:field="*{productImage}" placeholder="Product Image" class="form-control col-4">
+				<label class="form-label lbl" for="form3Example1n">Product Image</label>
+			</div>
+			<div class="form-outline mb-2">
+				<input type="text" th:field="*{stockUnit}" placeholder="Units" class="form-control col-4">
+				<label class="form-label lbl" for="form3Example1n">Stock Unit</label>
+			</div>
+			<input type="hidden" th:field="*{productId}" placeholder="Product Description"
+					class="form-control col-4">
+			<div class="form-outline mb-2">
+				<button type="submit" class="btn btn-info col-2">Save</button>
+			</div>
+		</form>
+		<hr>
+		<a th:href="@{/sellerHome}"> Go Home</a>
+	</div>
+</body>
+
+</html>

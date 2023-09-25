@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML >
+<html>
+
+<head>
+<link href="../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	type="text/css">
+<link href="../resources/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+	
+<title>Unexpected Error</title>
+<style type="text/css">
+.error-template {
+	padding: 10px 15px;
+	text-align: center;
+}
+
+.error-actions {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.error-actions .btn {
+	margin-right: 10px;
+}
+</style>
+<script type="text/javascript">
+	window.history.forward();
+	function noBack() {
+		window.history.forward();
+	}
+</script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row" style="margin-top: 25px; text-align: center;">
+			<div class="col-md-24">
+				<i class="fa fa-exclamation-triangle"
+					style="font-size: 750%; color: #013872;"></i>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-24">
+				<div class="error-template">
+					<h1>Unexpected Error</h1>
+					<div class="error-details">Please contact Admin
+					</div>
+					<div class="error-actions">
+						<a href="/login" class="btn btn-primary btn-lg"><span
+							class="glyphicon glyphicon-home"></span>&nbsp Goto Login Page</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="display: none;">
+			<div class="col-md-24">
+				<p>
+					<b>Exception Name:</b> <br />
+					<s:property value="exception" />
+				</p>
+				<p>
+					<b>Exception Details:</b> </br>
+					<s:property value="exceptionStack" />
+				</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

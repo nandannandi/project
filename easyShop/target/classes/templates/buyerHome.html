@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>EasyShop</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link rel="stylesheet" href="../productStyle.css">
+</head>
+
+<body>
+
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<!-- Container wrapper -->
+		<div class="container-fluid">
+			<!-- Toggle button -->
+			<button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+				data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<i class="fas fa-bars"></i>
+			</button>
+
+			<!-- Collapsible wrapper -->
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<!-- Navbar brand -->
+				<img src="../resources/img/shopping_cart.png" height="80" alt="Cart Logo" />
+				<!-- Left links -->
+				<ul class="navbar-nav me-auto mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/buyerHome}">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/purchaseHistory}">Purchase</a>
+					</li>
+				</ul>
+				<!-- Left links -->
+			</div>
+			<!-- Collapsible wrapper -->
+
+			<!-- Right elements -->
+			<div class="d-flex align-items-center">
+				<ul class="navbar-nav me-auto mb-lg-0">
+					<li class="nav-item">
+						<p class="nav-link btn btn-outline-info top-margin"
+							style="font-style: oblique; font-weight: bold; padding-right: 30px;">Available Balance:
+							&#8377<span id="balance" th:text="${balance}"></span></p>
+					</li>
+					<li class="nav-item">
+						<p th:text="${userName}" class="nav-link top-margin"
+							style="font-style: normal; font-weight: bold; padding-left: 30px;"></p>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link btn btn-outline-secondary top-margin" style="margin-right:30px"
+							th:href="@{/logout}">Logout</a>
+					</li>
+				</ul>
+
+			</div>
+			<!-- Right elements -->
+		</div>
+		<!-- Container wrapper -->
+	</nav>
+	<!-- Navbar -->
+
+	<!--<div>
+			<h7 style="color: green; text-align: center;"><span th:text="${productSaveSuccessMsg}"></span></h7>
+		</div>
+		<div>
+			<h7 style="color: red; text-align: center;"><span th:text="${productSaveFailMsg}"></span></h5>
+		</div>
+		<div>
+			<h7 style="color:green; text-align: center;"><span th:text="${deleteSuccessMsg}"></span></h5>
+		</div>
+		<div>
+			<h7 style="color: red; text-align: center;"><span th:text="${deleteFailedMsg}"></span></h5>
+		</div>
+		<div>
+			<h7 style="color:green; text-align: center;"><span th:text="${updateSuccessMsg}"></span></h5>
+		</div>
+		<div>
+			<h7 style="color: red; text-align: center;"><span th:text="${updateFailedMsg}"></span></h5>
+		</div>
+		<br>
+		<br>-->
+	<div class="container my-2 align-items-center">
+		<div>
+			<h7 style="color: green; text-align: center;"><span th:text="${productSaveSuccessMsg}"></span></h7>
+		</div>
+		<div>
+			<h7 style="color: red; text-align: center;"><span th:text="${productSaveFailMsg}"></span></h5>
+		</div>
+		<div>
+			<h7 style="color:green; text-align: center;"><span th:text="${deleteSuccessMsg}"></span></h5>
+		</div>
+		<div>
+			<h7 style="color: red; text-align: center;"><span th:text="${deleteFailedMsg}"></span></h5>
+		</div>
+		<div>
+			<h7 style="color:green; text-align: center;"><span th:text="${updateSuccessMsg}"></span></h5>
+		</div>
+		<div>
+			<h7 style="color: red; text-align: center;"><span th:text="${updateFailedMsg}"></span></h5>
+		</div>
+		<br>
+
+		<div class="mb-4">
+			<h1>Products for sale</h1>
+			<br>
+			<table border="1" class="table table-striped table-responsive-md">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Product Name</th>
+						<th>Product Description</th>
+						<th>Price<span>(&#8377)</span></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product , row : ${productList}">
+						<td th:text="${row.count}"></td>
+						<td th:text="${product.productName}"></td>
+						<td th:text="${product.productDescription}"></td>
+						<td th:text="${product.productsellPrice}"></td>
+						<td> <a th:href="@{/purchase/{id}(id=${product.productId})}"
+								class="btn btn-primary">Buy</a></td>
+						<!--<td th:text="${product.buyUnits}"></td>-->
+						<!--<td><input th:value="${product.buyUnits}" type="number" id="buy-Units-inp" name="buyUnits"
+										step="1" min="0"></td>-->
+						<!--<td> <a th:href="@{/purchase/{id}(id=${product.productId})/{unit}(unit=${product.buyUnits})}" class="btn btn-primary">Buy</a>
+						</td>
+						<td> <a th:href="@{/purchase/{id}(id=${product.productId}}" class="btn btn-primary">Buy</a>
+						</td>
+						<td> <a th:href="@{/purchase/{id}(id=${product.productId})}"
+								class="btn btn-primary">Buy</a>
+						</td>-->
+						<!--<td><a th:href="${'/purchase/' + {product.productId} + '&' + {product.buyUnits}}" class="btn btn-primary">Buy</a></td>-->
+						<!--<form th:action="@{/purchase}" th:object="${buyProduct}" method="post">
+							<td><input th:field="*{buyUnits}" type="text" /></td>
+							<td><input th:field="*{productId}" type="hidden" id="buyProductId"/></td>
+							<td><button type="submit" class="btn btn-primary">Buy</button></td>
+						</form>-->
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+		<script type="text/javascript">
+			function myFunction(productId){
+				console.log(productId);
+				document.getElementById('buyProductId').value = productId;
+				alert('submit')
+			}
+		</script>
+</body>
+
+</html>

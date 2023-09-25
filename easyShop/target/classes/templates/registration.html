@@ -1,0 +1,201 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>EasyShop</title>
+
+
+	<!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">-->
+	<!-- Font Awesome -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+	<!-- MDB -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="../registrationStyle.css">
+
+</head>
+
+<body>
+	<section class="h-80">
+		<div class="container-fluid h-custom">
+			<div class="row d-flex justify-content-center align-items-center h-100">
+				
+					<div class="card card-registration my-4">
+						<div class="row g-0">
+							<div class="col-xl-6 d-none d-xl-block">
+								<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+									alt="Sample photo" class="img-fluid"
+									style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+							</div>
+							<div class="col-xl-6">
+								<div class="card-body p-md-5 text-black">
+									<h3 class="mb-5 text-uppercase"
+										style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Create your EasyShopee
+										Account</h3>
+									<div class="mb-4">
+										<h7 style="color: red; text-align: center; font-weight: bold; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"><span
+												th:text="${email_Exist_Err_Msg}"></span></h7>
+									</div>
+									<div class="mb-4">
+										<h7 style="color: red; text-align: center; font-weight: bold; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"><span
+												th:text="${mobile_Exist_Err_Msg}"></span></h5>
+									</div>
+									<div class="mb-4">
+										<h7 style="color: red; text-align: center; font-weight: bold; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" id="err"></h5>
+									</div>
+									<form id="form" name="form1" action="/newUserRegistration/doRegister"
+										th:object="${user}" method="POST" autocomplete="off">
+										<div class="form-outline mb-4">
+											<input th:field="*{firstName}" type="text" id="input"
+												class="form-control form-control-lg resetClass" required />
+											<label class="form-label" for="form3Example1m">First name</label>
+											<input type="hidden" id="firstNameHidden" />
+										</div>
+
+
+										<div class="form-outline mb-4">
+											<input th:field="*{lastName}" type="text" id="input"
+												class="form-control form-control-lg resetClass" required />
+											<label class="form-label" for="form3Example1n">Last name</label>
+										</div>
+
+										<div class="form-outline mb-4">
+											<input th:field="*{email}" type="text" id="email"
+												class="form-control form-control-lg resetClass" name="email"
+												onchange="validateEmail()" required autocomplete="off" />
+											<label class="form-label" for="form3Example97">Email</label>
+										</div>
+
+										<div class="form-outline mb-4">
+											<input th:field="*{mobile}" type="number" id="mobile"
+												class="form-control form-control-lg resetClass" onchange="validateMobile()"
+												required />
+											<label class="form-label" for="form3Example97">Mobile No</label>
+										</div>
+
+										<div class="form-outline mb-4">
+											<input th:field="*{dob}" type="date" id="input"
+												class="form-control form-control-lg resetClass" required />
+											<label class="form-label" for="form3Example8">Date of Birth</label>
+										</div>
+										<div class="row">
+											<div class="col-md-6 mb-4">
+
+												<select th:field="*{userType}" class="resetClass" id="input" required>
+													<option th:value="'NS'" th:text="'Specify User Type'"></option>
+													<option th:value="'BUYER'" th:text="Buyer"></option>
+													<option th:value="'SELLER'" th:text="Seller"></option>
+												</select>
+
+											</div>
+										</div>
+
+										<div class="form-outline mb-4">
+											<input th:field="*{address}" type="text" id="input"
+												class="form-control form-control-lg resetClass" />
+											<label class="form-label" for="form3Example9">Address</label>
+										</div>
+
+										<div class="form-outline mb-4">
+											<input th:field="*{balance}" type="text" id="input"
+												class="form-control form-control-lg resetClass" required />
+											<label class="form-label" for="form3Example90">Balance</label>
+										</div>
+
+										<div class="form-outline mb-4">
+											<input th:field="*{password}" type="password" id="password"
+												class="form-control form-control-lg resetClass" onchange="validatePassword()" required />
+											<label class="form-label" for="form3Example4cg">Password</label>
+										</div>
+
+										<div class="d-flex justify-content-center pt-3">
+											<a href="/login" class="btn btn-light btn-lg" style="margin-right: 10px;">GoTo Login</a>
+											<button type="button" class="btn btn-light btn-lg resetBtn"
+												onclick="resetFields()">Reset all</button>
+											<button type="submit" id="submitBtn" class="btn btn-warning btn-lg ms-2"
+												>Submit</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				
+			</div>
+		</div>
+	</section>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
+
+	<script type="text/javascript">
+		function resetFields() {
+			document.getElementById("form").reset();
+			document.getElementById("err").innerText = "";
+			disableSubmitBtn();
+		}
+		function validatePassword() {
+			let password = document.getElementById("password").value;
+			console.log(password.length);
+			if(password.length <=0){
+				document.getElementById("err").innerText = "";
+			}
+			else if(password.length > 0  && password.length <6){
+				document.getElementById("err").innerText = "Password should be 6 to 8 characters long";
+			}else if(password.length >=6 && password.length <=8){
+				document.getElementById("err").innerText = "";
+			}else if(password.length >8){
+				document.getElementById("err").innerText = "Password should be 6 to 8 characters long";
+			}
+			disableSubmitBtn();
+		}
+		function validateEmail() {
+			var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+			if (document.getElementById("email").value.length <= 0) {
+				console.log(document.getElementById("email").value.length);
+				document.getElementById("err").innerText = "";
+			}
+			if(document.getElementById("email").value.length > 0){
+			if (document.getElementById("email").value.match(mailformat)) {
+				document.getElementById("err").innerText = "";
+			}
+			else {
+				document.getElementById("email").focus();
+				document.getElementById("err").innerText = "Invalid Email";
+			}
+			}
+			disableSubmitBtn();
+		}
+		
+		function validateMobile(){
+			let mobile = document.getElementById("mobile").value;
+			if( mobile.length>10 ){
+				document.getElementById("err").innerText = "Incorrect Mobile Number format";
+			}
+			if( mobile.length<10 ){
+				document.getElementById("err").innerText = "Incorrect Mobile Number format";
+			}
+			if(mobile.length <= 0 ){
+				document.getElementById("err").innerText = "";
+			}
+			if(mobile.length == 10 ){
+				document.getElementById("err").innerText = "";
+			}
+			disableSubmitBtn();
+		}
+		
+		function disableSubmitBtn(){
+			if(document.getElementById("err").innerText != ""){
+				document.getElementById("submitBtn").disabled = true;
+			}else{
+				document.getElementById("submitBtn").disabled = false;
+			}
+		}
+
+	</script>
+
+</body>
+
+</html>
